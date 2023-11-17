@@ -1,0 +1,253 @@
+/* PROGRAMMING SKILLS*/
+
+.skills-prog {
+    clear: both;
+    color: var(--base-preset);
+}
+
+.skills-prog ul {
+    margin-left: 15px;
+}
+
+.skills-prog ul li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    transition-duration: 0.3s;
+}
+.skills-prog ul li:hover {
+    color: var(--color-func);
+}
+
+.skills-prog ul li:hover .skills-bar .bar {
+    background: var(--color-func);
+    box-shadow: 0 0 0 1px var(--color-func);
+}
+
+.skills-prog ul li span {
+    display: block;
+    width: 100px;
+}
+
+.skills-prog ul li .skills-bar {
+    background: var(--color-line);
+    height: 1px;
+    width: calc(100% - 120px);
+    position: relative;
+    border-radius: 2px;
+}
+
+.skills-prog ul li .skills-bar .bar {
+    position: absolute;
+    top: -3px;
+    height: 8px;
+    width: 0;
+    background: var(--color-main);
+    box-shadow: 0 0 0 var(--color-main);
+    border-radius: 5px;
+    transition: width 1s ease-out;
+}
+
+/* SOFTWARE SKILLS */
+
+.skills-soft ul {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+.skills-soft ul li {
+    width: 100%;
+    position: relative;
+    list-style: none;
+}
+
+.skills-soft ul li svg {
+    width: 95%;
+    height: auto;
+    fill: transparent;
+    transform: rotate(-90deg);
+    position: relative;
+}
+
+.skills-soft ul li span, 
+.skills-soft ul li:hover svg text {
+    display: block;
+    position: absolute;
+    top: 38%;
+    width: 100%;
+    font-size: 13.9px;
+    font-weight: bold;
+    color: var(--base-preset);
+    text-align: center;
+    transition: font-size 0.3s, color 0.3s;
+}
+
+.skills-soft ul li svg text {
+    fill: var(--base-preset);
+    font-family: "Ubuntu", "微軟正黑體", sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+    text-anchor: center;
+    writing-mode: vertical-rl;
+    transform: rotate(0deg);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.skills-soft ul li svg .cbar::after {
+    content: attr(data-percent);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    color: var(--color-main);
+    z-index: 1;
+    
+}
+
+/* CIRCULAR PERCENTAGE */
+
+.skills-soft ul li svg .cbar {
+    fill: none;
+    stroke: var(--color-main);
+    stroke-width: 2.8px;
+    stroke-linecap: round;
+    position: relative;
+    stroke-dasharray: 0 100;
+    animation: progress 1s ease-out forwards;
+    transition: stroke-dasharray 1s ease-out;
+}
+
+.skills-soft ul li svg .cbar circle {
+    fill: none;
+    stroke: var(--color-bg);
+    stroke-width: 3px;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s ease-out;
+    stroke-dasharray: 0 100;
+}
+
+.skills-soft ul li[data-percent="92"] svg .cbar circle {
+    stroke-dasharray: 0 100;
+}
+
+.skills-soft ul li[data-percent="96"] svg .cbar circle {
+    stroke-dasharray: 0 96;
+}
+
+.skills-soft ul li[data-percent="40"] svg .cbar circle {
+    stroke-dasharray: 0 40;
+}
+
+.skills-soft ul li[data-percent="50"] svg .cbar circle {
+    stroke-dasharray: 0 50;
+}
+
+.skills-soft ul li[data-percent="33"] svg .cbar circle {
+    stroke-dasharray: 0 33;
+}
+
+.skills-soft ul li[data-percent="55"] svg .cbar circle {
+    stroke-dasharray: 0 55;
+}
+
+.skills-soft ul li[data-percent="20"] svg .cbar circle {
+    stroke-dasharray: 0 20;
+}
+
+.skills-soft ul li svg .cbar:hover circle {
+    stroke-dasharray: 0% 0%;
+}
+
+.skills-soft ul li:hover svg .cbar::after {
+    color: var(--color-func);
+}
+
+.skills-soft ul li:hover svg .cbar {
+    fill: none;
+    stroke: var(--color-func);
+    stroke-width: 4px;
+    stroke-linecap: round;
+}
+.skills-soft ul li:hover svg .cbar circle {
+    fill:  none;
+    stroke: rgba(238, 238, 238, 0.6);
+    stroke-width: 4px;
+    transition: stroke-dasharray 1s ease-out;
+}
+
+.skills-soft ul li[data-percent="92"] svg .cbar circle {
+    stroke-dasharray: 92 100%;
+}
+
+.skills-soft ul li[data-percent="96"] svg .cbar circle {
+    stroke-dasharray: 0 96%;
+}
+
+.skills-soft ul li[data-percent="40"] svg .cbar circle {
+    stroke-dasharray: 0 40%;
+}
+
+.skills-soft ul li[data-percent="50"] svg .cbar circle {
+    stroke-dasharray: 0 50%;
+}
+
+.skills-soft ul li[data-percent="33"] svg .cbar circle {
+    stroke-dasharray: 0 33%;
+}
+
+.skills-soft ul li[data-percent="55"] svg .cbar circle {
+    stroke-dasharray: 0 55%;
+}
+
+.skills-soft ul li[data-percent="20"] svg .cbar circle {
+    stroke-dasharray: 0 20%;
+}
+
+.skills-soft ul li small {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--color-main);
+}
+
+.skills-soft ul li:hover small {
+    display: block;
+    transform: scale(1.2);
+}
+
+.skills-soft ul li:hover span, 
+.skills-soft ul li:hover small {
+    transform: scale(1.2);
+}
+
+.func .skills-soft ul li:hover svg {
+    width: 100%;
+    fill: transparent;
+    transform: rotate(-90deg);
+}
+
+.skills-soft ul li:hover svg .cbar {
+    stroke-width: 3px;
+    stroke: var(--color-func);
+    stroke-linecap: round;
+}
+
+.skills-soft ul li:hover .soft-info span,
+.skills-soft ul li:hover svg text,
+.skills-soft ul li:hover .soft-info small {
+    position: absolute;
+    display: block;
+    width: 100%;
+    top: 52%;
+    transition-duration: 0.3s;
+}
+
+.skills-soft ul li:hover .soft-info span {
+    top: 40%;
+}
