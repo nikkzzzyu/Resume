@@ -19,7 +19,8 @@
     color: var(--color-func);
 }
 
-.skills-prog ul li:hover .skills-bar .bar {
+.skills-prog ul li:hover .skills-bar .bar,
+.percentage-chart {
     background: var(--color-func);
     box-shadow: 0 0 0 1px var(--color-func);
 }
@@ -54,19 +55,12 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
+    transition: color 0.3s;
 }
 .skills-soft ul li {
     width: 100%;
     position: relative;
     list-style: none;
-}
-
-.skills-soft ul li svg {
-    width: 95%;
-    height: auto;
-    fill: transparent;
-    transform: rotate(-90deg);
-    position: relative;
 }
 
 .skills-soft ul li span, 
@@ -82,172 +76,110 @@
     transition: font-size 0.3s, color 0.3s;
 }
 
+.skills-soft ul li:hover {
+    color: var(--color-func);
+}
+
 .skills-soft ul li svg text {
     fill: var(--base-preset);
     font-family: "Ubuntu", "微軟正黑體", sans-serif;
     font-weight: bold;
     font-size: 10px;
-    text-anchor: center;
+    text-anchor: middle;
     writing-mode: vertical-rl;
     transform: rotate(0deg);
     pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
-.skills-soft ul li svg .cbar::after {
+.skills-soft ul li svg .percentage-chart-stroke::after {
     content: attr(data-percent);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 10px;
-    color: var(--color-main);
+    color: var(--color-func);
     z-index: 1;
     
 }
 
 /* CIRCULAR PERCENTAGE */
 
-.skills-soft ul li svg .cbar {
-    fill: none;
-    stroke: var(--color-main);
-    stroke-width: 2.8px;
-    stroke-linecap: round;
+@property --percentage {
+    syntax: "<integer>";
+    initial-value: 0;
+    inherits: false;
+}
+
+.counter {
+    animation: counter 1s ease-out;
+    animation-fill-mode: forwards;
+    counter-reset: num var(--percentage);
+}
+.counter::after {
+    content: counter(num) "%";
+}
+
+@keyframes counter {
+    from {
+        --percentage: 0;
+    }
+    to {
+        --percentage: var(--counter-end);
+    }
+}
+
+.percentage-chart {
+    width: 300px;
+    height: 300px;
     position: relative;
-    stroke-dasharray: 0 100;
-    animation: progress 1s ease-out forwards;
-    transition: stroke-dasharray 1s ease-out;
+    margin: 0 auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-func);
+    z-index: 1;
 }
 
-.skills-soft ul li svg .cbar circle {
+
+.percentage-chart-bg {
     fill: none;
-    stroke: var(--color-bg);
-    stroke-width: 3px;
-    stroke-linecap: round;
-    transition: stroke-dasharray 1s ease-out;
-    stroke-dasharray: 0 100;
-}
-
-.skills-soft ul li[data-percent="92"] svg .cbar circle {
-    stroke-dasharray: 0 100;
-}
-
-.skills-soft ul li[data-percent="96"] svg .cbar circle {
-    stroke-dasharray: 0 96;
-}
-
-.skills-soft ul li[data-percent="40"] svg .cbar circle {
-    stroke-dasharray: 0 40;
-}
-
-.skills-soft ul li[data-percent="50"] svg .cbar circle {
-    stroke-dasharray: 0 50;
-}
-
-.skills-soft ul li[data-percent="33"] svg .cbar circle {
-    stroke-dasharray: 0 33;
-}
-
-.skills-soft ul li[data-percent="55"] svg .cbar circle {
-    stroke-dasharray: 0 55;
-}
-
-.skills-soft ul li[data-percent="20"] svg .cbar circle {
-    stroke-dasharray: 0 20;
-}
-
-.skills-soft ul li svg .cbar:hover circle {
-    stroke-dasharray: 0% 0%;
-}
-
-.skills-soft ul li:hover svg .cbar::after {
-    color: var(--color-func);
-}
-
-.skills-soft ul li:hover svg .cbar {
-    fill: none;
-    stroke: var(--color-func);
-    stroke-width: 4px;
-    stroke-linecap: round;
-}
-.skills-soft ul li:hover svg .cbar circle {
-    fill:  none;
-    stroke: rgba(238, 238, 238, 0.6);
-    stroke-width: 4px;
-    transition: stroke-dasharray 1s ease-out;
-}
-
-.skills-soft ul li[data-percent="92"] svg .cbar circle {
-    stroke-dasharray: 92 100%;
-}
-
-.skills-soft ul li[data-percent="96"] svg .cbar circle {
-    stroke-dasharray: 0 96%;
-}
-
-.skills-soft ul li[data-percent="40"] svg .cbar circle {
-    stroke-dasharray: 0 40%;
-}
-
-.skills-soft ul li[data-percent="50"] svg .cbar circle {
-    stroke-dasharray: 0 50%;
-}
-
-.skills-soft ul li[data-percent="33"] svg .cbar circle {
-    stroke-dasharray: 0 33%;
-}
-
-.skills-soft ul li[data-percent="55"] svg .cbar circle {
-    stroke-dasharray: 0 55%;
-}
-
-.skills-soft ul li[data-percent="20"] svg .cbar circle {
-    stroke-dasharray: 0 20%;
-}
-
-.skills-soft ul li small {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    stroke: #b1b1b1;
+    stroke-width: 3;
+    background-color: var(--color-func);
+    border-radius: 50%;
     transform: translate(-50%, -50%);
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--color-main);
 }
 
-.skills-soft ul li:hover small {
-    display: block;
-    transform: scale(1.2);
+.percentage-chart-stroke {
+    fill: none;
+    stroke-width: 3;
+    stroke: var(--color-main);
+    stroke-linecap: round;
+    border-radius: 50%;
+    animation: progress 5s ease-out forwards;
+    z-index: 1;
 }
+
+.counter {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    font-size: 15px;
+    color: var(--color-main);
+    transform: translate(-50%, -50%);
+}
+
+@keyframes progress {
+    0% {
+        stroke-dasharray: 0 100;
+    }
+}
+
 
 .skills-soft ul li:hover span, 
 .skills-soft ul li:hover small {
     transform: scale(1.2);
-}
-
-.func .skills-soft ul li:hover svg {
-    width: 100%;
-    fill: transparent;
-    transform: rotate(-90deg);
-}
-
-.skills-soft ul li:hover svg .cbar {
-    stroke-width: 3px;
-    stroke: var(--color-func);
-    stroke-linecap: round;
-}
-
-.skills-soft ul li:hover .soft-info span,
-.skills-soft ul li:hover svg text,
-.skills-soft ul li:hover .soft-info small {
-    position: absolute;
-    display: block;
-    width: 100%;
-    top: 52%;
-    transition-duration: 0.3s;
-}
-
-.skills-soft ul li:hover .soft-info span {
-    top: 40%;
 }
