@@ -51,6 +51,14 @@
 
 /* SOFTWARE SKILLS */
 
+.circle-wrap {
+    margin: 50px auto;
+    width: 150px;
+    height: 150px;
+    background: #e6e2e7;
+    border-radius: 50%;
+}
+
 .skills-soft ul {
     display: flex;
     justify-content: space-between;
@@ -60,7 +68,6 @@
 .skills-soft ul li {
     width: 100%;
     position: relative;
-    list-style: none;
 }
 
 .skills-soft ul li span, 
@@ -71,13 +78,26 @@
     width: 100%;
     font-size: 13.9px;
     font-weight: bold;
-    color: var(--base-preset);
     text-align: center;
     transition: font-size 0.3s, color 0.3s;
 }
 
-.skills-soft ul li:hover {
-    color: var(--color-func);
+.skills-soft ul li:hover, 
+.counter {
+    color: var(--color-func); /* transition for soft skill*/
+}
+
+.skills-soft ul li:hover span, 
+.skills-soft ul li:hover small {
+    transform: scale(1.2);
+}
+
+.skills-soft ul li svg {
+    width: 100%;
+    height: 100%;
+    max-width: 150px;  
+    max-height: 150px;
+    transition: opacity 0.3s ease;
 }
 
 .skills-soft ul li svg text {
@@ -92,7 +112,7 @@
     transition: opacity 0.3s ease;
 }
 
-.skills-soft ul li svg .percentage-chart-stroke::after {
+.skills-soft ul li svg .counter {
     content: attr(data-percent);
     position: absolute;
     top: 50%;
@@ -113,10 +133,19 @@
 }
 
 .counter {
+    display: block;
+    font-family: "Ubuntu", "微軟正黑體", sans-serif;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    font-size: 15px;
+    color: var(--color-main);
+    transform: translate(-50%, -50%);
     animation: counter 1s ease-out;
     animation-fill-mode: forwards;
     counter-reset: num var(--percentage);
 }
+
 .counter::after {
     content: counter(num) "%";
 }
@@ -131,26 +160,24 @@
 }
 
 .percentage-chart {
-    width: 300px;
-    height: 300px;
+    display: block;
     position: relative;
     margin: 0 auto;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-func);
-    z-index: 1;
+    overflow: hidden;
 }
 
+.percentage-chart svg {
+    transform: rotate(-90deg);
+}
 
 .percentage-chart-bg {
     fill: none;
     stroke: #b1b1b1;
     stroke-width: 3;
-    background-color: var(--color-func);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .percentage-chart-stroke {
@@ -158,28 +185,15 @@
     stroke-width: 3;
     stroke: var(--color-main);
     stroke-linecap: round;
-    border-radius: 50%;
-    animation: progress 5s ease-out forwards;
-    z-index: 1;
-}
-
-.counter {
-    position: absolute;
-    left: 50%;
-    top: 60%;
-    font-size: 15px;
-    color: var(--color-main);
-    transform: translate(-50%, -50%);
+    animation: progress 10s linear infinite;
+    transform-origin: center;
 }
 
 @keyframes progress {
     0% {
         stroke-dasharray: 0 100;
     }
-}
-
-
-.skills-soft ul li:hover span, 
-.skills-soft ul li:hover small {
-    transform: scale(1.2);
+    100% {
+        stroke-dasharray: var(--percentage);
+    }
 }

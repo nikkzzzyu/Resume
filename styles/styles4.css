@@ -48,10 +48,28 @@
     width: 60px;
     height: 60px;
     line-height: 60px;
-    color: var(--color-main);
+    color: var(--color-func);
     transition-duration: 0.3s;
 }
 
 .func .interests-items div:hover i span {
     display: block;
+}
+
+@media screen and (max-width: 768px) {
+    .resume .base,
+    .resume .func {
+        padding: 15px;
+    }
+    
+    .func h3 i {
+        font-size: 14px;
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+    }
+
+    .func .interests-items div {
+        width: 30%;
+    }
 }
