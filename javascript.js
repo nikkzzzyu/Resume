@@ -12,7 +12,7 @@ $('.skills-soft li').find('svg').each(function(i) {
     var circle = $(this).children('.cbar');
     var r = circle.attr('r');
     var c = Math.PI * (r * 2);
-    var percent = $(this).data('percent');
+    var percent = $(this).data('percentage.chart');
     var cbar = ((100 - percent) / 100) * c;
 
     circle.css({
